@@ -1,0 +1,3 @@
+# Runtime analytics archive files
+*.ndjson
+*.json

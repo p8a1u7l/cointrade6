@@ -1,0 +1,61 @@
+// 간단 보장 래퍼 (실프로덕션에선 yaml 로더 이미 있을 것)
+export default {
+  qualityThreshold: 0.70,
+  chandelierMult: 3.0,
+  oflowRatioMin: 2.0,
+  fvgMinMultiple: 1.2,
+  rrTargets: {
+    model1: [1.7],
+    model2: [1.55],
+    model3: [1.65],
+  },
+  microFilters: {
+    spreadBp: 2.0,
+    slippageBp: 2.5,
+    latencyMs: 120,
+    quoteAgeMs: 150,
+    depthBiasLong: 0.9,
+    depthBiasShort: 0.9,
+  },
+  scalp: {
+    maxHoldSec: 150,
+    maxBars: 3,
+    minHoldSec: 30,
+    signalStaleSec: 10,
+    spreadBpCap: 2.0,
+    slippageBpCap: 2.5,
+    quoteAgeMs: 150,
+    latencyMs: 120,
+    depthBias: {
+      LONG: 0.9,
+      SHORT: 0.9,
+    },
+    qualityThresholds: {
+      BREAKOUT: 0.75,
+      MEAN: 0.70,
+      EMA50: 0.72,
+    },
+    partialFillRatio: 0.6,
+    repriceAttempts: 3,
+    repriceDelayMs: { base: 60, step: 20 },
+    cooldownMs: 60_000,
+    cooldownWindowMs: 120_000,
+    interest: {
+      staleSec: 600,
+      boostPerZ: 0.02,
+      minScore: 2.0,
+    },
+  },
+  sessions: { weights: { ASIA:0.8, LONDON:1.0, NY:1.2, BRIDGE:0.9 } },
+  nswCaps: { spreadHigh: 2.0, slipHigh: 2.5 },
+  tickSize: { BTCUSDT: 0.1, ETHUSDT: 0.01 },
+  order: { maxPartialFillRatio: 0.6 },
+  data: {
+    featureServiceUrl: process.env.FEATURE_SERVICE_URL ?? "http://localhost:4000/api/features",
+  },
+  models: {
+    dl: { endpoint: process.env.DL_SERVICE_URL ?? "http://localhost:4500/api/dl" },
+    nsw: { endpoint: process.env.NSW_SERVICE_URL ?? "http://localhost:4501/api/nsw" },
+    policy: { endpoint: process.env.POLICY_SERVICE_URL ?? "http://localhost:4502/api/policy" },
+  },
+};

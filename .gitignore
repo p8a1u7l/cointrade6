@@ -1,0 +1,11 @@
+node_modules/
+dist/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.env
+!zenith/frontend/.env
+!zenith/backend/.env
+.vite/
+.DS_Store
